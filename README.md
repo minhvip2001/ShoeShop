@@ -1,4 +1,4 @@
-# Django REST API Template
+# Django REST API Shoe Shop
 
 ## How To Run
 ### 1. Create environment
