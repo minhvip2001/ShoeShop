@@ -20,3 +20,6 @@ class Permission(SafeDeleteModel):
                                     condition=Q(deleted__isnull=True)),
         ]
         ordering = ["created_at"]
+    
+    def __str__(self):
+        return "{}-{}".format(self.module, self.action)

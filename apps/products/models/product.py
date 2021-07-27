@@ -26,6 +26,7 @@ class Product(SafeDeleteModel):
         blank=True,
         null=True,
     )
+    quantity = models.PositiveIntegerField(blank=False, null=False)
     size = models.CharField(max_length=50, blank=True, null=True)
     color = models.CharField(max_length=50, blank=True, null=True)
     height = models.CharField(max_length=20, blank=True, null=True)
@@ -33,3 +34,6 @@ class Product(SafeDeleteModel):
     class Meta:
         db_table = "product"
         ordering = ["created_at"]
+
+    def __str__(self):
+        return self.name

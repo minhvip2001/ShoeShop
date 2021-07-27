@@ -20,5 +20,7 @@ class CartItem(SafeDeleteModel):
         related_name="cart_items"
     )
     quantity = models.PositiveIntegerField(blank=False, null=False, default=1)
-    price = models.PositiveIntegerField(blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "{}-{}".format(self.cart, self.product)

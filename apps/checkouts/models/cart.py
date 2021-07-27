@@ -13,3 +13,10 @@ class Cart(SafeDeleteModel):
         related_name="cart"
     )
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+       db_table = "cart"
+       ordering = ['-id']
+
+    def __str__(self):
+        return self.customer.fullname

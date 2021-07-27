@@ -1,3 +1,4 @@
+from apps.checkouts.models import Cart
 from core.permissions import IsCustomer
 from django.db import transaction
 from django.utils.translation import gettext_lazy as _
@@ -5,11 +6,10 @@ from drf_yasg.utils import swagger_auto_schema
 from rest_framework import viewsets, status, exceptions
 from rest_framework.decorators import action
 from rest_framework.exceptions import APIException
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from apps.users.filters import UserFilterSet
-from apps.customers.models import Customer, customer
+from apps.customers.models import Customer
 from apps.customers.serializers import CustomerSerializer, CustomerReadOnlySerializer, LoginSerializer, RegisterSerializer
 from core.mixins import GetSerializerClassMixin
 from core.swagger_schemas import ManualParametersAutoSchema
@@ -114,6 +114,7 @@ class CustomerViewSet(GetSerializerClassMixin, viewsets.ModelViewSet):
                 intance = serializer.save()
                 intance.set_password(data['password'])
                 intance.save()
+                Cart.objects.create(customer = intance)
 
         except Exception as e:
             raise APIException(_("Cannot register user"), status.HTTP_500_INTERNAL_SERVER_ERROR)

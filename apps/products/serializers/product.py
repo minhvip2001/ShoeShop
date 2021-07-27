@@ -25,7 +25,7 @@ class ProductReadOnlySerializer(serializers.Serializer):
         allow_null = True,
         allow_empty = True
     )
-    category = serializers.UUIDField(read_only=True, source="category_id")
+    category = serializers.UUIDField(read_only=True, source="category.name")
     size = serializers.CharField(read_only=True)
     color = serializers.CharField(read_only=True)
     height = serializers.CharField(read_only=True)

@@ -1,4 +1,3 @@
-from apps.customers.models.customer import Customer
 from core.permissions import IsAdmin, UserRolePermission
 from django.db import transaction
 from django.contrib.auth import authenticate
@@ -65,7 +64,7 @@ class UserViewSet(GetSerializerClassMixin, viewsets.ModelViewSet):
         url_path="login",
         url_name="login",
         filterset_class=None,
-        permission_classes=[],
+        permission_classes=[],  
         pagination_class=None,
     )
     def login(self, request, *args, **kwargs):   

@@ -19,7 +19,8 @@ def migrate_permission(apps, schema_editor):
     roles = Role.objects.filter()
     permissions = Permission.objects.filter(module = module)
     for role in roles:
-        role.permission.add(*permissions)
+        if role.name in ['Admin']:
+            role.permission.add(*permissions)
         role.save()
 
 class Migration(migrations.Migration):

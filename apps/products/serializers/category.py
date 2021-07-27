@@ -12,7 +12,7 @@ class CategorySerializer(serializers.ModelSerializer):
         category_name = data.get("name")
         for category in Category.objects.all():
             if(category.name == category_name):
-                raise serializers.ValidationError(_("Category_name is existed"))
+                 serializers.ValidationError(_("Category_name is exisraiseted"))
 
 class CategoryReadOnlySerializer(serializers.Serializer):
     id = serializers.UUIDField(read_only=True)

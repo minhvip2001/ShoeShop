@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from apps.customers.views import CustomerViewSet
+
 import rest_framework
 from django.contrib import admin
 from django.urls import path, include
@@ -23,7 +23,9 @@ from rest_framework import permissions
 from rest_framework.routers import SimpleRouter
 
 from apps.users.views import UserViewSet, PermissionViewSet, RoleViewSet
-from apps.products.views import ProductViewSet
+from apps.customers.views import CustomerViewSet
+from apps.products.views import ProductViewSet, CategoryViewSet, ProductImageViewSet
+from apps.checkouts.views import CartViewSet, CartItemViewSet, OrderViewSet, OrderItemViewSet
 
 swagger_info = openapi.Info(
     title="Eureka API",
@@ -54,11 +56,27 @@ api_router.register('permissions', PermissionViewSet, basename='permissions')
 # roles
 api_router.register('roles', RoleViewSet, basename='roles')
 # ---------
+# category
+api_router.register('categories', CategoryViewSet, basename='categories')
+# ---------
 # products
 api_router.register('products', ProductViewSet, basename='products')
 # ---------
-
-
+# product_images
+api_router.register('product_images', ProductImageViewSet, basename='product_images')
+# ---------
+# carts
+api_router.register('carts', CartViewSet, basename='carts')
+# ---------
+# cart_items
+api_router.register('cart_items', CartItemViewSet, basename='cart_items')
+# ---------
+# orders
+api_router.register('orders', OrderViewSet, basename='orders')
+# ---------
+# order_items
+api_router.register('order_items', OrderItemViewSet, basename='order_items')
+# ---------
 admin.autodiscover()
 
 urlpatterns = [

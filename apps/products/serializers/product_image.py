@@ -11,5 +11,5 @@ class ProductImageSerializer(serializers.ModelSerializer):
 class ProductImageReadOnlySerializer(serializers.Serializer):
     id = serializers.UUIDField(read_only=True)
     image = serializers.CharField(read_only=True)
-    product = serializers.UUIDField(read_only=True, source="product_id")
+    product = serializers.UUIDField(read_only=True, source="product.name")
     created_at = serializers.DateTimeField(read_only=True)
